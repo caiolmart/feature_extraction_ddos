@@ -10,7 +10,7 @@ Os pacotes capturados foram armazendos no formato PCAP e em seguida foram tratad
 Com o dataset de treino em maos, os autores geraram um novo conjunto de ataques com apenas 7 categorias desta vez, 6 delas presentes no conjunto de treino e uma categoria de ataque nova (referido como PortScan no paper e Portmap nos dados). Os autores realizaram uma preanalise onde decidiram quais seriam as features mais relevantes atraves do uso de uma random forest e por fim eles realizaram testes com 4 modelos diferentes (ID3, Random Forest, Naive Bayes, Multinomial Logistic Regression) para tentar detectar ataques DDoS no conjunto de teste. Nem o codigo nem os parametros utilizados foram compartilhados no trabalho original.
 
 
------
+
 ## DataSet
 |          | CSV   | PCAP.zip |
 |----------|-------|----------|
