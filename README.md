@@ -2,7 +2,7 @@
 
 ##  Origem dos dados
 
-Esse dataset foi gerado com a descrição em um [paper](https://ieeexplore.ieee.org/document/8888419) que buscava trazer uma nova forma de classificar ataques DDoS e gerar um dataset moderno que fosse descritivo desse tipo de ataque, toda a motivação partiu da inexistência de um dataset satisfatório. 
+Esse dataset foi gerado conforme a descrição [deste paper](https://ieeexplore.ieee.org/document/8888419) que buscava trazer uma nova forma de classificar ataques DDoS e gerar um dataset moderno e descritivo desse tipo de ataque, toda a motivação partiu da inexistência de um dataset satisfatório. 
 
 Resumindo o trabalho realizado, eles simularam um trafego padrão, que eles chamaram de benigno, a partir de um perfil gerado em cima de dados de usuários reais. Uma vez criado esse stream benigno de pacotes, eles criaram uma rede capaz de gerar diversos tipos de ataques DDoS distintos e capturaram todos os pacotes que chegavam na rede vitima. A ideia é que agora eles possuem um dataset próximo o suficiente da realidade para ser utilizado em tarefas mais complicadas como detecção de ataques e a classificação deles. Esse dataset de treino possui 11 tipos de ataques, no paper e [na descrição dos dados](https://www.unb.ca/cic/datasets/ddos-2019.html) eles citam 12 tipos de ataques mas nunca explicam de maneira compreensível porque o dataset possui um cenário a menos, "*The traffic volume for WebDDoS was so low and PortScan just has been executed in the testing day and will be unknown for evaluating the proposed model*". O ataque faltando é o WebDDoS . 
 Os pacotes capturados foram armazenados no formato PCAP e em seguida foram tratados por uma ferramenta chamada [CICFlowMeter](https://github.com/ahlashkari/CICFlowMeter). Essa ferramenta pega os PCAPS e gera o "flow" dos pacotes para poder extrair features dos flows. [Aqui](https://github.com/ahlashkari/CICFlowMeter/blob/master/ReadMe.txt) pode ser encontrado uma lista completa das features geradas por essa ferramenta, o nosso dataset possui apenas um recorte de 80 destas features. A escolha das features não foi justificada no trabalho original.
@@ -31,7 +31,9 @@ _________
 ## Críticas ao dataset e seu paper
 
   - A ferramenta utilizada para processar os dados, CICFlowMeter, foi desenvolvida pelos próprios autores do paper no passado e não parece ter sido utilizada por muitos outros pesquisadores. Ela é aberta num repositório do github porem não possui documentação relevante e sofre de diversas más praticas de programação.
-
+  
+  - É comum não existirem intervalos de normalidade entre ataques. As divisões no tempo descritas no paper não existem e isso pode ser constatado ao analisarmos os arquivos CSV separados por ataques como nas figuras aqui geradas. Existe uma contaminação entre os arquivos onde pacotes de um determinado ataque podem ser encontrados no arquivo representante do ataque imediatamente anterior ou posterior a ele. Isso tambem agrava o grande desbalanceamento entre as classes. 
+  
   - Geração dos CSVs a partir dos PCAPS não é reproduzível, não compartilharam código ou parâmetros utilizados
 
   - Reprodução dos modelos preditivos e suas métricas não é reproduzível, não compartilham código ou parâmetros utilizados. 
