@@ -24,6 +24,8 @@ Os dados PCAP não comprimidos estão na ordem centenas de Gb e não cabem no di
 
 _____
 incluir analises do pandas aqui talvez?
+
+![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/var_distributions/LDAP.png "Ldap - variaveis")
 _________
 
 
