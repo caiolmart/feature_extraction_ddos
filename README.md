@@ -12,7 +12,7 @@
 
 Esse dataset foi gerado conforme a descrição [deste paper](https://ieeexplore.ieee.org/document/8888419) que buscava trazer uma nova forma de classificar ataques DDoS e gerar um dataset moderno e descritivo desse tipo de ataque, toda a motivação partiu da inexistência de um dataset satisfatório. 
 
-![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/figures/dataset_art_fig2.png "Dataset Article Figure2")
+![alt text](figures/dataset_art_fig2.png "Dataset Article Figure2")
 
 Resumindo o trabalho realizado, eles simularam um trafego padrão, que eles chamaram de benigno, a partir de um perfil gerado em cima de dados de usuários reais. Uma vez criado esse stream benigno de pacotes, eles criaram uma rede capaz de gerar diversos tipos de ataques DDoS distintos e capturaram todos os pacotes que chegavam na rede vítima. O _Testbed_ está esquematizado na figura acima. A ideia é que agora eles possuem um dataset próximo o suficiente da realidade para ser utilizado em tarefas mais complicadas como detecção de ataques e a classificação deles. Esse dataset de treino possui 11 tipos de ataques, no paper e [na descrição dos dados](https://www.unb.ca/cic/datasets/ddos-2019.html) eles citam 12 tipos de ataques mas nunca explicam de maneira compreensível porque o dataset possui um cenário a menos. A justificativa encontrada para a não inclusão do ataque WebDDoS foi: "*The traffic volume for WebDDoS was so low and PortScan just has been executed in the testing day and will be unknown for evaluating the proposed model*".
 Os pacotes capturados foram armazenados no formato PCAP e em seguida foram tratados por uma ferramenta chamada [CICFlowMeter](https://github.com/ahlashkari/CICFlowMeter). Essa ferramenta pega os PCAPS e gera o "flow" dos pacotes para poder extrair features dos flows. [Aqui](https://github.com/ahlashkari/CICFlowMeter/blob/master/ReadMe.txt) pode ser encontrado uma lista completa das features geradas por essa ferramenta, o nosso dataset possui apenas um recorte de 80 destas features. A escolha das features não foi justificada no trabalho original.
@@ -36,14 +36,14 @@ Os dados PCAP não comprimidos estão na ordem centenas de Gb e não cabem no di
 Para ilustrar algumas características do nosso dataset, decidimos explorar aqui apenas um ataque. Como os diferentes ataques apresentam um comportamento semelhante, acreditamos que nesse primeiro momento esse exemplo é suficiente para se ter uma introdução ao dataset. Essas analises foram replicadas para outros ataques e podem ser conferidas [neste repositório do github](https://github.com/caiolmart/distributed_ddos) junto com os notebooks que as geraram.
 #### Histograma das Labels
 Cada fluxo capturado no dataset possui uma label que o designa como benigno ou como pertencente a um determinado ataque, cada arquivo CSV na teoria possui apenas fluxos de dois tipos, os benignos ou os de um determinado ataque. Aqui plotamos um histograma para as labels do CSV que descreve o ataque LDAP e podemos observar um problema recorrente nesse dataset: a contaminação dos arquivos por fluxos de ataques diferentes. Por não possuir uma janela grande o suficiente de normalidade, o dataset acaba não respeitando as fronteiras entre os ataques. Também podemos notar o grande desbalanceamento de classes. É de se esperar que haja uma certa desproporção entre as classes pela própria natureza dos ataques DDoS, mas essa desproporção é agravada pela total ausência de um trafego regular.
-![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/labels/LDAP.png "Ldap - labels")
+![alt text](plots/test_analysis/labels/LDAP.png "Ldap - labels")
 
 
 #### Histograma das features mais relevantes
 
 De acordo com a analise realizada pelo paper original, as features aqui representadas são as mais relevantes para se descrever e detectar um ataque do tipo LDAP. Podemos notar como o perfil do histograma para cada uma dessas features é bem característico e difere entre os pacotes benignos e os do ataque.
 
-![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/var_distributions/LDAP_notebook.png "Ldap - variaveis")
+![alt text](plots/test_analysis/var_distributions/LDAP_notebook.png "Ldap - variaveis")
 
 
 
