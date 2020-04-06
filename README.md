@@ -33,7 +33,7 @@ _________
 
   - A ferramenta utilizada para processar os dados, CICFlowMeter, foi desenvolvida pelos proprios autores do paper no passado e não parece ter sido utilizada por muitos outros pesquisadores. Ela é aberta num repositório do github porem não possui documentacao relevante e sofre de diversas más praticas de programacao.
 
-  - Geração dos CSVs a partir dos PCAPS não é repoduzivel, não compartilharam código ou parâmetros utilizados
+  - Geração dos CSVs a partir dos PCAPS não é repoduzível, não compartilharam código ou parâmetros utilizados
 
   - Reproducao dos modelos preditivos e suas métricas não é reproduzível, não compartilham código ou parâmetros utilizados. 
 
