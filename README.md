@@ -36,23 +36,23 @@ _________
 
   - Geração dos CSVs a partir dos PCAPS não é reproduzível, não compartilharam código ou parâmetros utilizados.
 
-  - Reprodução dos modelos preditivos e suas métricas não é reproduzível, não compartilham código ou parâmetros utilizados. 
+  - Reprodução dos modelos preditivos e suas métricas não é reproduzível, não compartilham código ou parâmetros utilizados. 
 
-  - Não está claro como os modelos foram testados, a existência de uma classe nova no conjunto de treino nos leva a imaginar que os modelos tem como objetivo detectar se há um ataque DDoS ocorrendo ou não sem se importar com classificá-lo. Porém eles se utilizam de um modelo de regressão logística multinomial, o que nos leva a acreditar que os modelos buscavam detectar e classificar o tipo de ataque. Se esse for o caso, não conseguimos compreender a motivação por incluir uma nova classe no conjunto de teste que não estava presente no conjunto de treino para um classificador.
+  - Não está claro como os modelos foram testados, a existência de uma classe nova no conjunto de treino nos leva a imaginar que os modelos tem como objetivo detectar se há um ataque DDoS ocorrendo ou não sem se importar com classificá-lo. Porém eles se utilizam de um modelo de regressão logística multinomial, o que nos leva a acreditar que os modelos buscavam detectar e classificar o tipo de ataque. Se esse for o caso, não conseguimos compreender a motivação por incluir uma nova classe no conjunto de teste que não estava presente no conjunto de treino para um classificador.
 
-  - O paper possui diversos erros de digitação e por vezes é pouco claro.
+  - O paper possui diversos erros de digitação e por vezes é pouco claro.
 
-  - Todos os modelos utilizados foram testados a posteriori e não são capazes de detectar um ataque em tempo real.
+  - Todos os modelos utilizados foram testados a posteriori e não são capazes de detectar um ataque em tempo real.
 
 
 ## Ideias possíveis de serem exploradas em nosso paper
 
 
-  - Gerar um modelo "online" capaz de receber o stream de dados e detectar ataques em tempo real.
+  - Gerar um modelo "online" capaz de receber o stream de dados e detectar ataques em tempo real.
 
-  - Explorar o desbalanceamento das classes, a proporção de pacotes benignos para pacotes malignos é extremamente baixa.
+  - Explorar o desbalanceamento das classes, a proporção de pacotes benignos para pacotes malignos é extremamente baixa.
+  
+  - Explorar os dados não processados e gerar novas features a partir dos PCAPS que poderiam se mostrar mais relevantes do que as utilizadas nesse dataset.
 
-  - Explorar os dados não processados e gerar novas features a partir dos PCAPS que poderiam se mostrar mais relevantes do que as utilizadas nesse dataset.
-
-  - Explorar algoritmos mais modernos do que os testados nesse paper.
+  - Explorar algoritmos mais modernos do que os testados nesse paper.
 
