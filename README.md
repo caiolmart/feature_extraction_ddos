@@ -26,14 +26,14 @@ Os dados PCAP não comprimidos estão na ordem centenas de Gb e não cabem no di
 
 #### Histograma das Labels
 Cada fluxo capturado no dataset possui uma label que o designa como benigno ou como pertencente a um determinado ataque, com cada arquivo, em teoria, possuindo apenas fluxos benignos e fluxos de um ataque especifico. Aqui plotamos um histograma para as labels do CSV que descreve o ataque LDAP e podemos observar um problema recorrente nesse dataset: a contaminação dos arquivos por fluxos de ataques diferentes. Por não possuir uma janela grande o suficiente de normalidade entre os diversos ataques, o dataset acaba não respeitando as fronteiras entre os ataques. 
-![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/labels/LDAP_notebook.png "Ldap - labels")
+![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/labels/LDAP.png "Ldap - labels")
 
 
 #### Histograma das features mais relevantes
 
 De acordo com a analise realizada pelo paper original, as features aqui representadas são as mais relevantes para se descrever e detectar um ataque do tipo LDAP. Podemos notar como o perfil do histograma para cada uma dessas features é bem caracteristico e difere entre os pacotes benignos e os do ataque.
 
-![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/var_distributions/LDAP.png "Ldap - variaveis")
+![alt text](https://github.com/caiolmart/distributed_ddos/blob/master/plots/test_analysis/var_distributions/LDAP_notebook.png "Ldap - variaveis")
 
 
 -------------
