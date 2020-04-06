@@ -1,3 +1,3 @@
 # Notebooks
 
-Exporatory analysis and experiments.
+Exploratory analysis and experiments.
