@@ -1,9 +1,10 @@
 # DDoS Evaluation Dataset (CICDDoS2019)
----------------
-Alan Barzilay 8639515
-Caio Lorenzetti Martinelli 8539899
 
----------------
+
+**Alan Barzilay** - 8639515
+**Caio Lorenzetti Martinelli** - 8539899
+
+______________________
 
 ##  Origem dos dados
 
