@@ -70,7 +70,7 @@ De acordo com a analise realizada pelo paper original, as features aqui represen
 ## Ideias possíveis de serem exploradas em nosso paper
 
 
-  - Gerar um modelo "online" capaz de receber o stream de dados e detectar ataques em tempo real.
+  - Gerar um modelo "online" capaz de receber o stream de dados e detectar ataques em tempo real. Uma possivel dificuldade que poderemos enfrentar com essa ideia seria na simulação online, como organizar a entrega dos PCAPS de maneira a recriar as suas capturas e gerar um cenario realista para o treino e teste.
 
   - Explorar o desbalanceamento das classes, a proporção de pacotes benignos para pacotes malignos é extremamente baixa.
   
