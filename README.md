@@ -34,7 +34,7 @@ _________
   
   - É comum não existirem intervalos de normalidade entre ataques. As divisões no tempo descritas no paper não existem e isso pode ser constatado ao analisarmos os arquivos CSV separados por ataques como nas figuras aqui geradas. Existe uma contaminação entre os arquivos onde pacotes de um determinado ataque podem ser encontrados no arquivo representante do ataque imediatamente anterior ou posterior a ele. Isso tambem agrava o grande desbalanceamento entre as classes. 
   
-  - Geração dos CSVs a partir dos PCAPS não é reproduzível, não compartilharam código ou parâmetros utilizados
+  - Geração dos CSVs a partir dos PCAPS não é reproduzível, não compartilharam código ou parâmetros utilizados.
 
   - Reprodução dos modelos preditivos e suas métricas não é reproduzível, não compartilham código ou parâmetros utilizados. 
 
