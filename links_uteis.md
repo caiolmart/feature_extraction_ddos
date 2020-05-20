@@ -13,3 +13,5 @@
   - DNS amplification DDoS: [`https://blog.cloudflare.com/deep-inside-a-dns-amplification-ddos-attack/`](https://blog.cloudflare.com/deep-inside-a-dns-amplification-ddos-attack/)
 
   - Amazon DDoS white paper: [`https://d0.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf`](https://d0.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf)
+
+  - DDoS Attack Detection Algorithm Using IP Address Features: [`https://link-springer-com.ez67.periodicos.capes.gov.br/chapter/10.1007/978-3-642-02270-8_22`](https://link-springer-com.ez67.periodicos.capes.gov.br/chapter/10.1007/978-3-642-02270-8_22)
