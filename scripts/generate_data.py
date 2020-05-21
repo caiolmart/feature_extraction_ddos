@@ -158,13 +158,14 @@ protocols = {
 }
 
 files = [
-    'DrDoS_DNS.csv',
-    'DrDoS_LDAP.csv',
-    'DrDoS_MSSQL.csv',
-    'DrDoS_NetBIOS.csv',
-    'DrDoS_SNMP.csv',
-    'DrDoS_SSDP.csv',
-    'DrDoS_UDP.csv',
+    'DrDoS_NTP.csv',
+    #'DrDoS_DNS.csv',
+    #'DrDoS_LDAP.csv',
+    #'DrDoS_MSSQL.csv',
+    #'DrDoS_NetBIOS.csv',
+    #'DrDoS_SNMP.csv',
+    #'DrDoS_SSDP.csv',
+    #'DrDoS_UDP.csv',
 ]
 afg = AnubisFG()
 
@@ -190,7 +191,7 @@ for filename in files:
     gc.collect()
 
     print('Preparing timestamps.')
-    data['timestamp'] = data['Timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f'))
+    data['timestamp'] = data['Timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=2))
     data['lst_timestamp'] = data.apply(lambda x: x['timestamp'] + timedelta(microseconds=x['Flow Duration']), axis=1)
 
     print('Preparing flow keys.')
@@ -229,7 +230,7 @@ for filename in files:
     ts = data.iloc[idx, 1].to_pydatetime()
     key = data.iloc[idx, 2]
     label = data.iloc[idx, 0]
-    while idx < len_data:
+    while True:
         try:
             # Try to get packet in this capture.
             packet = capture.next()
@@ -242,7 +243,7 @@ for filename in files:
                                         keep_packets=False)
             packet = capture.next()
         afg.update(packet)
-        while afg.lst_timestamp >= ts:
+        if afg.lst_timestamp >= ts:
             ftrs = afg.generate_features(key)
             f.write(f'{key};{ts};{label};')
             f.write(';'.join([str(x) for x in ftrs]))
