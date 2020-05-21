@@ -96,7 +96,6 @@ protocols = {
     82 : 'SECURE-VMTP',
     83 : 'VINES',
     84 : 'TTP',
-    84 : 'IPTM',
     85 : 'NSFNET-IGP',
     86 : 'DGP',
     87 : 'TCF',
