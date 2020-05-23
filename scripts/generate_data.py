@@ -159,13 +159,16 @@ protocols = {
 
 files = [
     'DrDoS_NTP.csv',
-    #'DrDoS_DNS.csv',
-    #'DrDoS_LDAP.csv',
-    #'DrDoS_MSSQL.csv',
-    #'DrDoS_NetBIOS.csv',
-    #'DrDoS_SNMP.csv',
-    #'DrDoS_SSDP.csv',
-    #'DrDoS_UDP.csv',
+    'DrDoS_DNS.csv',
+    'DrDoS_LDAP.csv',
+    'DrDoS_MSSQL.csv',
+    'DrDoS_NetBIOS.csv',
+    'DrDoS_SNMP.csv',
+    'DrDoS_SSDP.csv',
+    'DrDoS_UDP.csv',
+    'UDPLag.csv',
+    'Syn.csv',
+    'TFTP.csv',
 ]
 afg = AnubisFG()
 
