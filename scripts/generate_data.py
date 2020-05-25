@@ -1,10 +1,17 @@
 import pandas as pd
 from datetime import datetime, timedelta
 import gc
+import logging
 from scapy.utils import rdpcap
 from scapy.layers.inet import IP, UDP, TCP
 
 from anubisflow import AnubisFG
+
+
+logging.basicConfig(filename='logs/generate_data.log', 
+                    format='%(asctime)s %(message)s', 
+                    level=logging.DEBUG)
+logging.info('Starting program.')
 
 pcap_num = 0
 capture = rdpcap('data/raw/pcap/01-12/SAT-01-12-2018_0')
@@ -25,12 +32,12 @@ files = [
 afg = AnubisFG()
 
 for filename in files:
-    print(f'memory_twotup has {len(afg.memory_twotup)} flows.')
-    print(f'memory_fivetup has {len(afg.memory_fivetup)} flows.')
-    print(f'Reading data {filename}.')
+    logging.info(f'memory_twotup has {len(afg.memory_twotup)} flows.')
+    logging.info(f'memory_fivetup has {len(afg.memory_fivetup)} flows.')
+    logging.info(f'Reading data {filename}.')
     data = pd.read_csv(f'data/raw/csv/01-12/{filename}')
     data.columns = [x.strip() for x in data.columns]
-    print(f'Data has shape {data.shape}')
+    logging.info(f'Data has shape {data.shape}')
 
     cols = [
         'Source IP',
@@ -45,11 +52,11 @@ for filename in files:
     data = data[cols]
     gc.collect()
 
-    print('Preparing timestamps.')
+    logging.info('Preparing timestamps.')
     data['timestamp'] = data['Timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=4))
     data['lst_timestamp'] = data.apply(lambda x: x['timestamp'] + timedelta(microseconds=x['Flow Duration']), axis=1)
 
-    print('Preparing flow keys.')
+    logging.info('Preparing flow keys.')
     data['flow_key'] = data.apply(lambda x: (x['Source IP'],
                                              x['Source Port'],
                                              x['Destination IP'],
@@ -69,13 +76,13 @@ for filename in files:
     for col in drop_cols:
         del data[col]
     gc.collect()
-    print('Sorting by lst_timestamp.')
+    logging.info('Sorting by lst_timestamp.')
     data.columns = [x.lower() for x in data.columns]
     data = data.sort_values('lst_timestamp')
 
-    print('Flows done.')
+    logging.info('Flows done.')
 
-    print('Reading pcap and generating features.')
+    logging.info('Reading pcap and generating features.')
 
     outfile = f'data/interim/flow_features_{filename}'
     f = open(outfile,'w')
@@ -93,7 +100,9 @@ for filename in files:
         else:
             # Get next pcap file
             pcap_num += 1
-            print(f'Reading pcap {pcap_num}')
+            logging.info(f'Reading pcap {pcap_num}')
+            logging.info(f'memory_twotup has {len(afg.memory_twotup)} flows.')
+            logging.info(f'memory_fivetup has {len(afg.memory_fivetup)} flows.')
             capture = rdpcap(f'data/raw/pcap/01-12/SAT-01-12-2018_0{pcap_num}')
             idx_pcap = 0
             packet = capture[idx_pcap]
@@ -106,5 +115,5 @@ for filename in files:
             idx += 1
         idx_pcap += 1
     f.close()
-    print('Done')
+    logging.info('Done')
 capture.close()
