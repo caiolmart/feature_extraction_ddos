@@ -15,6 +15,8 @@ logging.info('Starting program.')
 
 pcap_num = 0
 capture = rdpcap('data/raw/pcap/01-12/SAT-01-12-2018_0')
+idx_pcap = 0
+len_pcap = len(capture)
 
 files = [
     'DrDoS_NTP.csv',
@@ -88,9 +90,7 @@ for filename in files:
     f = open(outfile,'w')
 
     idx = 0
-    idx_pcap = 0
     len_data = data.shape[0]
-    len_pcap = len(capture)
     while idx < len_data:
         ts = data.iloc[idx, 1].to_pydatetime()
         key = data.iloc[idx, 2]
@@ -105,6 +105,7 @@ for filename in files:
             logging.info(f'memory_fivetup has {len(afg.memory_fivetup)} flows.')
             capture = rdpcap(f'data/raw/pcap/01-12/SAT-01-12-2018_0{pcap_num}')
             idx_pcap = 0
+            len_pcap = len(capture)
             packet = capture[idx_pcap]
         afg.update(packet)
         if afg.lst_timestamp >= ts:
