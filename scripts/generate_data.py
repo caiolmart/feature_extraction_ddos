@@ -104,6 +104,7 @@ for filename in files:
             f.write(';'.join([str(x) for x in ftrs]))
             f.write('\n')
             idx += 1
+        idx_pcap += 1
     f.close()
     print('Done')
 capture.close()
