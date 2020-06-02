@@ -4,3 +4,4 @@ etc
 *.ipynb_checkpoints
 data/raw/pcap/01-12
 data/raw/pcap/03-11
+*.log
