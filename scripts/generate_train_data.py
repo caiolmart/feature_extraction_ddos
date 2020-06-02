@@ -8,7 +8,7 @@ from scapy.layers.inet import IP, UDP, TCP
 from anubisflow import AnubisFG
 
 
-logging.basicConfig(filename='logs/generate_data.log', 
+logging.basicConfig(filename='logs/generate_train_data.log', 
                     format='%(asctime)s %(message)s', 
                     level=logging.DEBUG)
 logging.info('Starting program.')
@@ -86,7 +86,7 @@ for filename in files:
 
     logging.info('Reading pcap and generating features.')
 
-    outfile = f'data/interim/flow_features_{filename}'
+    outfile = f'data/interim/train/flow_features_{filename}'
     f = open(outfile,'w')
 
     idx = 0
