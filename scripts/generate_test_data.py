@@ -19,17 +19,13 @@ idx_pcap = 0
 len_pcap = len(capture)
 
 files = [
-    'DrDoS_NTP.csv',
-    'DrDoS_DNS.csv',
-    'DrDoS_LDAP.csv',
-    'DrDoS_MSSQL.csv',
-    'DrDoS_NetBIOS.csv',
-    'DrDoS_SNMP.csv',
-    'DrDoS_SSDP.csv',
-    'DrDoS_UDP.csv',
+    'Portmap.csv',
+    'NetBIOS.csv',
+    'LDAP.csv',
+    'MSSQL.csv',
+    'UDP.csv',
     'UDPLag.csv',
     'Syn.csv',
-    'TFTP.csv',
 ]
 afg = AnubisFG()
 
