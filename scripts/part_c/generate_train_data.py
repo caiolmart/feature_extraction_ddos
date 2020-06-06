@@ -1,0 +1,44 @@
+import pandas as pd
+from datetime import datetime, timedelta
+import logging
+import os
+from scapy.utils import rdpcap
+from scapy.layers.inet import IP, UDP, TCP
+
+from anubisflow import AnubisFG
+
+
+logging.basicConfig(filename='logs/part_c/generate_train_data.log', 
+                    format='%(asctime)s %(message)s', 
+                    level=logging.DEBUG)
+logging.info('Starting program.')
+
+pcap_dir = 'data/raw/pcap/01-12'
+pcap_files = os.listdir(pcap_dir)
+
+afg = AnubisFG(only_twotuple=True, bidirectional=False)
+
+outfile = f'data/interim/part_c/train/flows.csv'
+f = open(outfile,'w')
+idx = 0
+for pcap_file in pcap_files:
+    logging.info(f'memory_twotup has {len(afg.memory_twotup)} flows.')
+    logging.info(f'memory_fivetup has {len(afg.memory_fivetup)} flows.')
+    logging.info(f'Output file has {idx} rows.')
+    logging.info(f'Reading pcap {pcap_file}')
+    capture = rdpcap(f'{pcap_dir}/{pcap_file}')
+
+    for packet in capture:
+        afg.update(packet)
+        key = (packet[IP].src, packet[IP].dst)
+        mem = afg.memory_twotup[key]
+        if sum(mem.pkt_protocol_counter.values()) % 100 == 0:
+            ftrs = afg.generate_features(key)
+            f.write(f'{key};{afg.lst_timestamp};')
+            f.write(';'.join([str(x) for x in ftrs]))
+            f.write('\n')
+            idx += 1
+            if sum(mem.pkt_protocol_counter.values()) == 5e4:
+                del afg.memory_twotup[key]
+    capture.close()
+f.close()
