@@ -18,7 +18,7 @@ pcap_files = os.listdir(pcap_dir)
 pcap_files = [x for x in pcap_files if not '.zip' in x]
 pcap_files = sorted(pcap_files, key=lambda x: int(x.split('_')[-1]))
 
-afg = AnubisFG(only_twotuple=True)
+afg = AnubisFG(only_twotuple=True, bidirectional=False)
 
 outfile = f'data/interim/part_c/test_flows.csv'
 f = open(outfile,'w')
@@ -34,8 +34,7 @@ for pcap_file in pcap_files:
             afg.update(packet)
             key = (packet[IP].src, packet[IP].dst)
             mem = afg.memory_twotup[key]
-            n_packets = sum(mem.fwd_pkt_protocol_counter.values()) + \
-                        sum(mem.bck_pkt_protocol_counter.values())
+            n_packets = sum(mem.pkt_protocol_counter.values())
             if n_packets % 100 == 0:
                 ftrs = afg.generate_features(key)
                 f.write(f'{key};{afg.lst_timestamp};')
