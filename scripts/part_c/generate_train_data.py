@@ -15,6 +15,8 @@ logging.info('Starting program.')
 
 pcap_dir = 'data/raw/pcap/01-12'
 pcap_files = os.listdir(pcap_dir)
+pcap_files = [x for x in pcap_files if not '.zip' in x]
+pcap_files = sorted(pcap_files, key=lambda x: int(x.split('_')[-1]))
 
 afg = AnubisFG(only_twotuple=True)
 
