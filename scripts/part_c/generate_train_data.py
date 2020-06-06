@@ -30,18 +30,19 @@ for pcap_file in pcap_files:
     capture = rdpcap(f'{pcap_dir}/{pcap_file}')
 
     for packet in capture:
-        afg.update(packet)
-        key = (packet[IP].src, packet[IP].dst)
-        mem = afg.memory_twotup[key]
-        n_packets = sum(mem.fwd_pkt_protocol_counter.values()) + \
-                    sum(mem.bck_pkt_protocol_counter.values())
-        if n_packets % 100 == 0:
-            ftrs = afg.generate_features(key)
-            f.write(f'{key};{afg.lst_timestamp};')
-            f.write(';'.join([str(x) for x in ftrs]))
-            f.write('\n')
-            idx += 1
-            if n_packets == 5e4:
-                del afg.memory_twotup[key]
+        if IP in packet:
+            afg.update(packet)
+            key = (packet[IP].src, packet[IP].dst)
+            mem = afg.memory_twotup[key]
+            n_packets = sum(mem.fwd_pkt_protocol_counter.values()) + \
+                        sum(mem.bck_pkt_protocol_counter.values())
+            if n_packets % 100 == 0:
+                ftrs = afg.generate_features(key)
+                f.write(f'{key};{afg.lst_timestamp};')
+                f.write(';'.join([str(x) for x in ftrs]))
+                f.write('\n')
+                idx += 1
+                if n_packets == 5e4:
+                    del afg.memory_twotup[key]
     capture.close()
 f.close()
