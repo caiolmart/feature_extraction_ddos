@@ -13,7 +13,7 @@ logging.basicConfig(filename='logs/part_c/generate_test_data.log',
                     level=logging.DEBUG)
 logging.info('Starting program.')
 
-pcap_dir = 'data/raw/pcap/01-12'
+pcap_dir = 'data/raw/pcap/03-11'
 pcap_files = os.listdir(pcap_dir)
 
 afg = AnubisFG(only_twotuple=True)
