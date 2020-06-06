@@ -39,7 +39,7 @@ for pcap_file in pcap_files:
             f.write(';'.join([str(x) for x in ftrs]))
             f.write('\n')
             idx += 1
-            if sum(mem.pkt_protocol_counter.values()) == 5e4:
+            if n_packets == 5e4:
                 del afg.memory_twotup[key]
     capture.close()
 f.close()
