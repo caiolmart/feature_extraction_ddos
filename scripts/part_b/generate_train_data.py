@@ -86,7 +86,7 @@ for filename in files:
 
     logging.info('Reading pcap and generating features.')
 
-    outfile = f'data/interim/train/flow_features_{filename}'
+    outfile = f'data/interim/part_b/train/flow_features_{filename}'
     f = open(outfile,'w')
 
     idx = 0
