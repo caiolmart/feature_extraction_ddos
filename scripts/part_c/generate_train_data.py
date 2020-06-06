@@ -18,7 +18,7 @@ pcap_files = os.listdir(pcap_dir)
 
 afg = AnubisFG(only_twotuple=True)
 
-outfile = f'data/interim/part_c/train/flows.csv'
+outfile = f'data/interim/part_c/train_flows.csv'
 f = open(outfile,'w')
 idx = 0
 for pcap_file in pcap_files:
