@@ -43,5 +43,4 @@ for pcap_file in pcap_files:
                 idx += 1
                 if n_packets == 5e4:
                     del afg.memory_twotup[key]
-    capture.close()
 f.close()
