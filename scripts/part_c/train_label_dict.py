@@ -30,7 +30,7 @@ for file in files:
     group = data.groupby(['Source IP', 'Destination IP', 'Label']).agg({'Timestamp': 'max'}).reset_index()
     print(f'Inserting into dictionary')
     for index, row in group.iterrows():
-        label_dict[(row['Source IP'][0], row['Destination IP'][0])][row['Label'][0]] = row['Timestamp'][0]
+        label_dict[(row['Source IP'], row['Destination IP'])][row['Label']] = row['Timestamp']
     del data
     del group
     print('Done\n')
