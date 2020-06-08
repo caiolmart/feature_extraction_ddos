@@ -23,7 +23,7 @@ for file in files:
     data = pd.read_csv(f'data/raw/csv/01-12/{file}')
     data.columns = [x.strip() for x in data.columns]
     print(f'Preparing timestamps')
-    data['timestamp'] = data['timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=4))
+    data['timestamp'] = data['Timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=4))
     print(data.shape)
     data.head()
     print(f'Grouping data')
