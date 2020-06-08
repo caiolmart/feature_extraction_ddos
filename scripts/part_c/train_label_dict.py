@@ -23,14 +23,14 @@ for file in files:
     data = pd.read_csv(f'data/raw/csv/01-12/{file}')
     data.columns = [x.strip() for x in data.columns]
     print(f'Preparing timestamps')
-    data['timestamp'] = data['Timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=4))
+    data['timestamp'] = data['timestamp'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d %H:%M:%S.%f') + timedelta(hours=4))
     print(data.shape)
     data.head()
     print(f'Grouping data')
-    group = data.groupby(['Source IP', 'Destination IP', 'Label']).agg({'Timestamp': 'max'}).reset_index()
+    group = data.groupby(['Source IP', 'Destination IP', 'Label']).agg({'timestamp': 'max'}).reset_index()
     print(f'Inserting into dictionary')
     for index, row in group.iterrows():
-        label_dict[(row['Source IP'], row['Destination IP'])][row['Label']] = row['Timestamp']
+        label_dict[(row['Source IP'], row['Destination IP'])][row['Label']] = row['timestamp']
     del data
     del group
     print('Done\n')

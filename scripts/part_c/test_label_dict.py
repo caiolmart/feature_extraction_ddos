@@ -23,10 +23,10 @@ for file in files:
     print(data.shape)
     data.head()
     print(f'Grouping data')
-    group = data.groupby(['Source IP', 'Destination IP', 'Label']).agg({'Timestamp': 'max'}).reset_index()
+    group = data.groupby(['Source IP', 'Destination IP', 'Label']).agg({'timestamp': 'max'}).reset_index()
     print(f'Inserting into dictionary')
     for index, row in group.iterrows():
-        label_dict[(row['Source IP'], row['Destination IP'])][row['Label']] = row['Timestamp']
+        label_dict[(row['Source IP'], row['Destination IP'])][row['Label']] = row['timestamp']
     del data
     del group
     print('Done\n')
